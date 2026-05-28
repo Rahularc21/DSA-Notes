@@ -41,7 +41,7 @@ class Solution {
     Node* deleteK(Node* head, int K) {
         Node* curr=head, *prev=NULL;
         int count=1;
-        if(K==1) return head;
+        if(K==1) return NULL;
         while(curr){
             if(count%K!=0){
                 prev=curr;
