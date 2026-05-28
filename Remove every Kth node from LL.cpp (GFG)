@@ -1,0 +1,61 @@
+/* Structure for Link list node
+class Node {
+  public:
+    int data;
+    Node* next;
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+
+//creating new LL-->
+class Solution {
+  public:
+    Node* deleteK(Node* head, int K) {
+        Node* newList=new Node(-1);
+        Node* ptr=newList;
+        int count=1;
+        Node* temp=head;
+        while(temp){
+            if(count%K!=0){
+                Node* n=new Node(temp->data);
+                newList->next=n;
+                newList=newList->next;
+            }
+            temp=temp->next;
+            count++;
+        }
+        return ptr->next;
+    }
+};
+
+
+
+
+
+//M2 wihtout creating new list....
+class Solution {
+  public:
+    Node* deleteK(Node* head, int K) {
+        Node* curr=head, *prev=NULL;
+        int count=1;
+        if(K==1) return head;
+        while(curr){
+            if(count%K!=0){
+                prev=curr;
+                curr=curr->next;
+                count++;
+            }
+            else{
+                Node* temp=curr;
+                prev->next=curr->next;
+                curr=curr->next;
+                delete temp;
+                count++;
+            }
+        }
+        return head;
+    }
+};
