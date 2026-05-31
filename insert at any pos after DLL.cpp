@@ -46,13 +46,15 @@ Node* insertAtIdx(Node* head,int val,int pos){
     }
     else{
         Node* curr=head;
-        while(--pos){
+        while(--pos && curr!=NULL){
             curr=curr->next;
         }
-        if(curr==NULL && pos>0){
-            cout<<"Invalid Position"<<endl;
+        //first check valid pos or not
+        if(curr==NULL){
+            cout<<"Position invalid"<<endl;
             return head;
         }
+        
         if(curr->next==NULL){
             Node* temp=new Node(val);
             curr->next=temp;
@@ -82,6 +84,6 @@ int main() {
    Node* head=NULL;
    head=createDLL(arr,n);
    print(head);
-   head=insertAtIdx(head,50,5);
+   head=insertAtIdx(head,50,6);
    print(head);
 }
